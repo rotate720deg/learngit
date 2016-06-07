@@ -27,4 +27,5 @@ git的回退：
 
 分支管理：
 	1.git中的流程是HEAD--->master--->提交，当我们创建一个分支dev（“git checkout -b dev”这条命令相当于“git branch dev”和“git checkout dev”两条，即创建并切换），并将HEAD指向dev时，操作就回到dev这个分支上，master不变（“git branch”命令会列出所有分支，当前分支前面会标一个*号）；当我们合并时，只要将master指向dev的当前提交就完成了合并（“git merge dev”用于合并指定分支到当前分支，Fast-forward信息，Git告诉我们，这次合并是“快进模式”）；此时我们就可以放心的删除dev分支了（“git branch -d dev”）；
-	2.那么遇到冲突怎么办呢？比我我们在feature1下修改提交，切换到master修改提交，然后合并，就会出现冲突，此时查看修改的文件会发现，Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容
+	2.那么遇到冲突怎么办呢？比我我们在feature1下修改提交，切换到master修改提交，然后合并，就会出现冲突，此时查看修改的文件会发现，Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容。修改文件重新添加提交。然后我们可以查看合并情况（“git log --graph --pretty=oneline --abbrev-commit”其实第一个指令就可以）
+	3.当我们禁用fast-merge时，（“git merge --no-ff -m "add merge" dev”）
