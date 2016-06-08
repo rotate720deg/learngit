@@ -35,3 +35,17 @@ git的回退：
 多人协作：
 	1.当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。要查看远程库的信息，用“git remote”或者用“git remote -v”显示更详细的信息；
 	2.推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样("git push origin dev")，Git就会把该分支推送到远程库对应的远程分支上：
+	3.抓取分支，我的同事在另一台电脑上或者另一个目录上通过clone抓取到一个工程时，只能看到本地的master，但我要在dev上开发，就必须创建远程origin的dev分支到本地（“git checkout -b dev origin/dev”）,然后修改提交，但是碰巧我也修改了再push的话就会冲突，解决办法也很简单，Git已经提示我们，先用“git pull”把最新的提交从origin/dev抓下来，然后，在本地合并，解决冲突，再推送，但是“git pull”也失败了，原因是没有指定本地dev分支与远程origin/dev分支的链接（“git branch --set-upstream dev origin/dev”）；
+	4总结一下：因此，多人协作的工作模式通常是这样：
+
+	首先，可以试图用git push origin branch-name推送自己的修改；
+
+	如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+
+	如果合并有冲突，则解决冲突，并在本地提交；
+
+	没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
+
+	如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。
+
+	这就是多人协作的工作模式，一旦熟悉了，就非常简单。
