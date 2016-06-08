@@ -30,3 +30,4 @@ git的回退：
 	2.那么遇到冲突怎么办呢？比我我们在feature1下修改提交，切换到master修改提交，然后合并，就会出现冲突，此时查看修改的文件会发现，Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容。修改文件重新添加提交。然后我们可以查看合并情况（“git log --graph --pretty=oneline --abbrev-commit”其实第一个指令就可以）
 	3.当我们禁用fast-merge时，（“git merge --no-ff -m "add merge" dev”）
 	4.bug分支，当我需要修复一个紧急bug，但手上有另一个未完成的分支不能提交怎么办？此时“git stash”可以存储工作现场。然后我们就可以转到需要修复bug的分支，创建临时分支（比如issue-001），修复后合并，删除。接着我们转回继续工作的分支，查看一下工作现场（“git stash list”），恢复时有两种方法，一种是“git stash apply”,恢复后需要“git stash drop”删除，第二种是“git stash pop”恢复并删除；可以多次stash，当多次恢复“git stash list”查看，然后“ git stash apply stash@{0}”，恢复指定stash；
+	5.当我们在一个新的分支上开发一个新功能后，在没有合并之前需要删除就要使用“git branch -D dev”来强行删除；
