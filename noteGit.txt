@@ -53,4 +53,8 @@ git的回退：
 标签管理：
 	1.git中的标签相当于快照，只是打个标记在commit上
 	2.切换到需要打标签的分支上，“git tag tag-name”就可以了，默认标签是打在最新提交的commit上，那么想打以前的提交呢？"git log --pretty=oneline --abbrev-commit"查看历史提交，获取commit id然后"git tag tag-name commit-id"就可以了；
-	3.“git tag”查看标签，标签是按照字母顺序排序的，“git show tag-name”可以查看标签细节
+	3.“git tag”查看标签，标签是按照字母顺序排序的，“git show tag-name”可以查看标签细节；
+	4.还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字“git tag -a v1.0 -m "first tag"”,也可以-s用私钥签名一个标签，但必须安装GPG；
+	5.如果标签打错了，可以删掉“git tag -d tag-name”
+	6.推送标签到远程“git push origin tag-name”或者一次性推送所有的标签“git push origin --tags”；
+	7.要删除远程的标签，先在本地删除，然后“git push origin：refs/tags/tag-name”
